@@ -20,4 +20,13 @@ data class User private constructor(
     fun changeName(name: String) {
         this.name = name
     }
+
+    /**
+     * ユーザ名の重複を確認するメソッド
+     * → 他のユーザの名前を知っていることになってしまうので違和感がある
+     * → ドメインサービスを利用する
+     */
+    fun isDuplicated() {
+        TODO()
+    }
 }
