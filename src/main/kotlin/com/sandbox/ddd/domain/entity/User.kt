@@ -15,11 +15,31 @@ data class User private constructor(
     }
 
     companion object {
+        /**
+         * 新規作成用ファクトリーメソッド
+         *
+         * ・この例ではUUIDを利用しているが、シーケンスを利用したい場合もあり得る
+         * 　そのような複雑な生成処理の場合は Factoryメソッドを利用する
+         */
         fun of(name: String) =
             User(
                 id = UserId.of(UUID.randomUUID().toString()),
                 name = name
             )
+
+        /**
+         * データストアからの再構築用ファクトリーメソッド
+         */
+        fun of(id: UserId, name: String) =
+            User(
+                id = id,
+                name = name
+            )
+
+        /**
+         * UserFactory にもファクトリーメソッドが存在するが、Userクラスを見るだけでは気付けない
+         * この場合同じパッケージに含めるなど、気付かせる工夫が必要
+         */
     }
 
     fun changeName(name: String) {
