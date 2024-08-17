@@ -18,7 +18,7 @@ interface UserRepository {
     fun find(userId: UserId): User?
 
     /**
-     * ユーザ名の重複をチェックする
+     * ユーザ名の重複をチェックする（NGパターン）
      * ・DBアクセスなので repository に実装したくなるが、repository の責務としてNG
      * ・あくまで repository はデータの永続化＆復元のみ
      *
@@ -31,4 +31,12 @@ interface UserRepository {
      * ・domain service から呼び出されることになる？
      */
     fun isDuplicated(userId: UserId) : Boolean
+
+    /**
+     * シーケンスを利用してユーザIDを採番する
+     *
+     * ・ファクトリーを用意するのとは別の選択肢としてとりうる
+     * ・ただしリポジトリはあくまでデータの永続化と再構築が責務であるため、ボトムアップ本では推奨していない
+     */
+    fun nextIdentify() : UserId
 }
