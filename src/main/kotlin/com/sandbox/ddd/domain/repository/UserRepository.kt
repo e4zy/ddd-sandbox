@@ -2,7 +2,9 @@ package com.sandbox.ddd.domain.repository
 
 import com.sandbox.ddd.domain.entity.User
 import com.sandbox.ddd.domain.valueobject.UserId
+import org.springframework.stereotype.Repository
 
+@Repository
 interface UserRepository {
     /**
      * ユーザ情報を保存する（データの永続化処理を提供）
@@ -13,7 +15,7 @@ interface UserRepository {
     /**
      * ユーザ情報を検索する（データの復元処理を提供）
      */
-    fun find(name: String): User?
+    fun find(userId: UserId): User?
 
     /**
      * ユーザ名の重複をチェックする

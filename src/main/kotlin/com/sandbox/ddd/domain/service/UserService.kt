@@ -1,14 +1,19 @@
 package com.sandbox.ddd.domain.service
 
 import com.sandbox.ddd.domain.entity.User
+import com.sandbox.ddd.domain.repository.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
-class UserService {
+class UserService(
+    private val userRepository: UserRepository,
+) {
+    /**
+     * 基本的にはドメインオブジェクトをそのまま受け取る
+     * ・【メリット】具体的に必要なプロパティや処理を、呼び出し側が意識しなくて済む
+     */
     fun isDuplicated(user: User) : Boolean {
-        /**
-         * TODO ここで呼び出すのは repository だっけ？ mapper だっけ？
-         */
-        TODO("DBアクセスしてユーザ名に重複がないかチェックする")
+        val duplicatedUser = userRepository.find(user.id)
+        return duplicatedUser != null
     }
 }

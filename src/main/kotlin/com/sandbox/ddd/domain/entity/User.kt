@@ -1,6 +1,7 @@
 package com.sandbox.ddd.domain.entity
 
 import com.sandbox.ddd.domain.valueobject.UserId
+import java.util.UUID
 
 data class User private constructor(
     /** エンティティを区別するための識別子 */
@@ -14,7 +15,11 @@ data class User private constructor(
     }
 
     companion object {
-        fun of(id: UserId, name: String) = User(id = id, name = name)
+        fun of(name: String) =
+            User(
+                id = UserId.of(UUID.randomUUID().toString()),
+                name = name
+            )
     }
 
     fun changeName(name: String) {
