@@ -1,7 +1,7 @@
-package com.sandbox.ddd.domain.service
+package com.sandbox.ddd.domain.user.service
 
-import com.sandbox.ddd.domain.entity.User
-import com.sandbox.ddd.domain.repository.UserRepository
+import com.sandbox.ddd.domain.user.entity.User
+import com.sandbox.ddd.domain.user.repository.UserRepository
 import org.springframework.stereotype.Service
 
 @Service

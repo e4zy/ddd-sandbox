@@ -1,7 +1,7 @@
 package com.sandbox.ddd.usecase.user
 
-import com.sandbox.ddd.domain.repository.UserRepository
-import com.sandbox.ddd.domain.valueobject.UserId
+import com.sandbox.ddd.domain.user.repository.UserRepository
+import com.sandbox.ddd.domain.user.valueobject.UserId
 
 class UserGetUseCase(
     private val userRepository: UserRepository,

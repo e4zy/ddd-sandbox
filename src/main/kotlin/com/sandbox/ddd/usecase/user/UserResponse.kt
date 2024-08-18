@@ -1,6 +1,6 @@
 package com.sandbox.ddd.usecase.user
 
-import com.sandbox.ddd.domain.entity.User
+import com.sandbox.ddd.domain.user.entity.User
 
 /**
  * レスポンスクラス

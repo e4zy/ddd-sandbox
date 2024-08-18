@@ -1,6 +1,6 @@
-package com.sandbox.ddd.domain.entity
+package com.sandbox.ddd.domain.user.entity
 
-import com.sandbox.ddd.domain.valueobject.UserId
+import com.sandbox.ddd.domain.user.valueobject.UserId
 import java.util.UUID
 
 data class User private constructor(

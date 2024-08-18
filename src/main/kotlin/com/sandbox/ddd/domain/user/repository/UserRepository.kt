@@ -1,7 +1,7 @@
-package com.sandbox.ddd.domain.repository
+package com.sandbox.ddd.domain.user.repository
 
-import com.sandbox.ddd.domain.entity.User
-import com.sandbox.ddd.domain.valueobject.UserId
+import com.sandbox.ddd.domain.user.entity.User
+import com.sandbox.ddd.domain.user.valueobject.UserId
 import org.springframework.stereotype.Repository
 
 @Repository

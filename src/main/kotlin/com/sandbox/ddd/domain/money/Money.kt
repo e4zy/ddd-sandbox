@@ -1,4 +1,4 @@
-package com.sandbox.ddd.domain.valueobject
+package com.sandbox.ddd.domain.money
 
 data class Money private constructor(
     val amount: Int,
