@@ -14,6 +14,12 @@ data class User private constructor(
         require(name.length >= 3) { "ユーザ名は3文字以上です。" }
     }
 
+    /**
+     * プレミアムユーザかどうか（仕様パターン説明用）
+     * 簡単のため必ずtrueを返す
+     */
+    fun isPremium() = true
+
     companion object {
         /**
          * 新規作成用ファクトリーメソッド
