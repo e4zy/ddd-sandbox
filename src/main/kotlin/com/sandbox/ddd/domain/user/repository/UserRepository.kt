@@ -18,6 +18,11 @@ interface UserRepository {
     fun find(userId: UserId): User?
 
     /**
+     * 複数IDを基にユーザ情報を検索する
+     */
+    fun findByIds(userIds: List<UserId>): List<User>
+
+    /**
      * ユーザ名の重複をチェックする（NGパターン）
      * ・DBアクセスなので repository に実装したくなるが、repository の責務としてNG
      * ・あくまで repository はデータの永続化＆復元のみ
