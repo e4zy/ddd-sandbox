@@ -1,4 +1,4 @@
-package com.sandbox.ddd.domain.valueobject
+package com.sandbox.ddd.domain.user.valueobject
 
 data class FullName private constructor(
     val firstName: String,

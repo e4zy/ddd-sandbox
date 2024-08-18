@@ -1,9 +1,9 @@
 package com.sandbox.ddd.usecase.user
 
-import com.sandbox.ddd.domain.entity.User
-import com.sandbox.ddd.domain.repository.UserRepository
-import com.sandbox.ddd.domain.service.UserService
-import com.sandbox.ddd.domain.valueobject.UserId
+import com.sandbox.ddd.domain.user.entity.User
+import com.sandbox.ddd.domain.user.repository.UserRepository
+import com.sandbox.ddd.domain.user.service.UserService
+import com.sandbox.ddd.domain.user.valueobject.UserId
 
 /**
  * ユーザ操作を行うユースケース

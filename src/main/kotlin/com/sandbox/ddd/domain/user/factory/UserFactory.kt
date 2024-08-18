@@ -1,6 +1,6 @@
-package com.sandbox.ddd.domain.factory
+package com.sandbox.ddd.domain.user.factory
 
-import com.sandbox.ddd.domain.entity.User
+import com.sandbox.ddd.domain.user.entity.User
 
 interface UserFactory {
     /**

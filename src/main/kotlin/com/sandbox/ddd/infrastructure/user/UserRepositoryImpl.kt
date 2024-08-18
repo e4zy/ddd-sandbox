@@ -1,8 +1,8 @@
-package com.sandbox.ddd.infrastructure.repositoryImpl
+package com.sandbox.ddd.infrastructure.user
 
-import com.sandbox.ddd.domain.entity.User
-import com.sandbox.ddd.domain.repository.UserRepository
-import com.sandbox.ddd.domain.valueobject.UserId
+import com.sandbox.ddd.domain.user.entity.User
+import com.sandbox.ddd.domain.user.repository.UserRepository
+import com.sandbox.ddd.domain.user.valueobject.UserId
 
 class UserRepositoryImpl : UserRepository {
     override fun save(user: User) {

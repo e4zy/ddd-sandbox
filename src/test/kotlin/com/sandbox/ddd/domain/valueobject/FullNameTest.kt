@@ -1,5 +1,6 @@
 package com.sandbox.ddd.domain.valueobject
 
+import com.sandbox.ddd.domain.user.valueobject.FullName
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe

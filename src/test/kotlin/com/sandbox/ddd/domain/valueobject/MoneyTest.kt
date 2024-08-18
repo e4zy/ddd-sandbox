@@ -1,5 +1,7 @@
 package com.sandbox.ddd.domain.valueobject
 
+import com.sandbox.ddd.domain.money.Currency
+import com.sandbox.ddd.domain.money.Money
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
