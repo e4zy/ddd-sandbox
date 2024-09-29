@@ -11,12 +11,14 @@ data class Circle private constructor(
     /**
      * 以下の実装だと、CircleがUserのインスタンスを保持している
      * -> サークル集約からユーザー集約のインスタンスを操作できてしまう
+     * -> 同じ集約ならインスタンス参照でOKだが、別集約なら避けるべき
      */
 //    val owner: User,
 //    val member: MutableList<User>,
 
     /**
      * サークル集約はユーザーの識別子のみを保持するようにすると、上記を避けられる
+     * -> 別集約の場合は識別子参照
      */
     val ownerId: UserId,
     val memberIds: MutableList<UserId>,
