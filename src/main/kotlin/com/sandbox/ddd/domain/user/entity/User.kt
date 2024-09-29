@@ -1,14 +1,21 @@
 package com.sandbox.ddd.domain.user.entity
 
 import com.sandbox.ddd.domain.user.valueobject.UserId
+import com.sandbox.ddd.domain.user.valueobject.UserRank
 import java.util.UUID
 
+/**
+ * ドメインモデル貧血症を改善したコード例
+ * 新規作成時の状態やユーザ名の文字数制限など、ユーザに関する仕様が記述されるようになった
+ */
 data class User private constructor(
     /** エンティティを区別するための識別子 */
     val id: UserId,
 
-    // TODO エンティティだけど値を可変にしてもいいのか、、？
+    // TODO エンティティだけど値を可変にしてもいいのか、、？直接プロパティを変更できるからダメそう
     var name: String,
+
+    val rank: UserRank,
 ) {
     init {
         require(name.length >= 3) { "ユーザ名は3文字以上です。" }
@@ -16,13 +23,13 @@ data class User private constructor(
 
     /**
      * プレミアムユーザかどうか（仕様パターン説明用）
-     * 簡単のため必ずtrueを返す
      */
-    fun isPremium() = true
+    fun isPremium() = this.rank == UserRank.PREMIUM
 
     companion object {
         /**
          * 新規作成用ファクトリーメソッド
+         * 必ずファクトリーメソッドを経由することで、常に正しいインスタンスしか存在させない
          *
          * ・この例ではUUIDを利用しているが、シーケンスを利用したい場合もあり得る
          * 　そのような複雑な生成処理の場合は Factoryメソッドを利用する
@@ -30,16 +37,24 @@ data class User private constructor(
         fun of(name: String) =
             User(
                 id = UserId.of(UUID.randomUUID().toString()),
-                name = name
+                name = name,
+                rank = UserRank.REGULAR,    // 新規作成時は必ず一般ランク
             )
 
         /**
          * データストアからの再構築用ファクトリーメソッド
+         *
+         * ・DBから取得した値をそのまま受け取り、バリデーションはしない
+         * ・Javaであれば package-private にすることで他のパッケージから呼ばれないようにできるが、Kotlinにはない
+         * 　-> メソッド名で区別するのがベター（fromRepository, reconstruct）
+         *
+         * ・TODO 再構築するだけでドメイン知識はないから、インフラ層の責務ではないか？ -> Kotlinならそれでもよさげ
          */
-        fun of(id: UserId, name: String) =
+        fun fromRepository(id: UserId, name: String, rank: UserRank) =
             User(
                 id = id,
-                name = name
+                name = name,
+                rank = rank,
             )
 
         /**
@@ -53,10 +68,12 @@ data class User private constructor(
     }
 
     /**
-     * ユーザ名の重複を確認するメソッド
-     * → 他のユーザの名前を知っていることになってしまうので違和感がある
-     * → ドメインサービスを利用する
+     * ユーザ名の重複を確認する
      */
+    @Deprecated(
+        "他のユーザの名前をユーザオブジェクトが知っているのは違和感がある -> ドメインサービスを利用する",
+        ReplaceWith("UserService.isDuplicated()")
+    )
     fun isDuplicated() {
         TODO()
     }

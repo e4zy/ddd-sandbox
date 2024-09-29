@@ -9,7 +9,7 @@ import com.sandbox.ddd.domain.user.valueobject.UserId
  * ユーザ操作を行うユースケース
  * 今の状態だと userService が register でしか利用されておらず、凝集度が低い
  *  -> [UserRegisterUseCase] と [UserGetUseCase] にクラスを分割するパターンもある
- *  -> 1クラス1ユースケース
+ *  -> 基本は1クラス1ユースケース
  */
 class UserUseCase(
     private val userRepository: UserRepository,
@@ -34,8 +34,10 @@ class UserUseCase(
     /**
      * ユーザ情報を取得する（NGパターン）
      * ・戻り値としてドメインオブジェクトをそのまま返却している
-     * ・【メリット】コードが比較的シンプルになる
-     * ・【デメリット】呼び出し側から意図せずドメイン情報を操作される可能性がある（User.changeName, 等）
+     * 【メリット】コードが比較的シンプルになる
+     * 【デメリット】
+     * ・呼び出し側から意図せずドメイン情報を操作される可能性がある（User.changeName, 等）
+     * ・ドメインオブジェクトにプレゼンテーションに関連する処理が混入する恐れがある
      *
      * @param userId ユーザID
      * @return [User] ドメインオブジェクト
@@ -48,8 +50,10 @@ class UserUseCase(
     /**
      * ユーザ情報を取得する
      * ・戻り値としてレスポンス返却用の data class を別途定義する
-     * ・【メリット】ドメイン情報を外部に公開せずに済む
-     * ・【デメリット】上記に比べてコードが少し煩雑になる, 処理が増えるためパフォーマンスは劣る
+     * 【メリット】
+     * ・ドメイン情報を外部に公開せずに済む
+     * ・プレゼンテーション層がドメイン層の修正の影響を受けなくなる
+     * 【デメリット】上記に比べてコードが少し煩雑になる, 処理が増えるためパフォーマンスは劣る
      *
      * @param userId ユーザID
      * @return [UserResponse]

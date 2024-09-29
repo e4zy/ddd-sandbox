@@ -4,6 +4,11 @@ import com.sandbox.ddd.domain.user.entity.User
 import com.sandbox.ddd.domain.user.valueobject.UserId
 import org.springframework.stereotype.Repository
 
+/**
+ * TODO なぜリポジトリのインタフェースをドメイン層に置くのか？
+ *
+ * ・ドメイン層に置くことで集約の範囲を明示するため
+ */
 @Repository
 interface UserRepository {
     /**
@@ -21,6 +26,13 @@ interface UserRepository {
      * 複数IDを基にユーザ情報を検索する
      */
     fun findByIds(userIds: List<UserId>): List<User>
+
+    /**
+     * 複数IDを基にユーザ情報を検索する（ソートあり）
+     *
+     * ・ソート順は引数で指定できるようにすることで、責務に矛盾なく実装できる
+     */
+    fun findByIds(userIds: List<UserId>, sortKey: String): List<User>
 
     /**
      * ユーザ名の重複をチェックする（NGパターン）
