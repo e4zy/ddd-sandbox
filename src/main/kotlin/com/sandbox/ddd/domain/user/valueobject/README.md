@@ -18,11 +18,11 @@
       - 姓、名を個別に取り扱いたい場合は、値オブジェクトとして定義するパターンもある
 ```
 // 様々なパターンが考えられる
-data class FullName(firstName: String, lastName, String)
+data class FullName(firstName: String, lastName: String)
 
-data class FullName(firstName: FirstName, lastName, LastName)
+data class FullName(firstName: FirstName, lastName: LastName)
 
-data class FullName(firstName: Name, lastName, Name)
+data class FullName(firstName: Name, lastName: Name)
 ```
 
 // TODO このへんはもう少し自分の言葉で表現したい
